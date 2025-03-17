@@ -1,90 +1,377 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <title>Consultor Jurídico</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <link rel="stylesheet" href="https://use.typekit.net/iat2zdw.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXX');
-  </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    .header {
-      text-align: center;
-      padding: 20px;
-      background-color: #333;
-      color: white;
-    }
-    .page-title {
-      margin: 0;
-      font-size: 2em;
-    }
-    .content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .article-link {
-      text-decoration: none;
-    }
-    .article-image {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-    .article-image:hover {
-      transform: scale(1.05);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Management Sports</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica", Arial, sans-serif;
+        }
+
+        :root {
+            --primaria: #193762; /* Azul escuro */
+            --secundaria: #0f0d0f; /* Preto */
+            --terciaria: #da9911; /* Laranja */
+            --quarta: #f5f0f0; /* Branco suave */
+        }
+
+        body {
+            background: linear-gradient(to bottom, var(--primaria), #0a1e3a);
+            color: var(--quarta);
+            line-height: 2;
+        }
+
+        header {
+            background: url('https://i.imgur.com/mRJwjVk.jpeg') no-repeat center;
+            background-size: cover;
+            background-position: center center;
+            height: 300px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--terciaria);
+            transition: top 0.3s;
+        }
+
+        header.hidden {
+            top: -300px;
+        }
+
+        nav {
+            background-color: var(--secundaria);
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 300px;
+            z-index: 999;
+            transition: top 0.3s;
+        }
+
+        nav.hidden {
+            top: 0;
+        }
+
+        nav a {
+            color: var(--terciaria);
+            text-decoration: none;
+            margin: 0 25px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--quarta);
+        }
+
+        .content {
+            margin-top: 400px;
+            padding: 80px 60px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: var(--terciaria);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        p {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            font-size: 16px;
+        }
+
+        /* Carrossel */
+        .carousel {
+            width: 100%;
+            max-width: 1400px;
+            height: 600px; /* Aumentado verticalmente */
+            margin: 0 auto 50px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--terciaria);
+            border-radius: 5px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 350px; /* Maior */
+            height: 550px; /* Preenche quase todo o carrossel */
+            object-fit: cover;
+            opacity: 0.8;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .carousel-images img:hover {
+            opacity: 1;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--terciaria);
+            color: var(--quarta);
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        /* Clientes */
+        .clientes {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .clientes img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            opacity: 0.7;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .clientes img:hover {
+            opacity: 1;
+        }
+
+        /* Imagem Ampliada */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: var(--secundaria);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-viewer img {
+            width: 800px; /* Maior, mas sem zoom */
+            height: auto;
+            object-fit: contain;
+        }
+
+        .image-viewer button {
+            background: var(--terciaria);
+            color: var(--quarta);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--secundaria);
+            padding: 40px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 80px;
+        }
+
+        footer a {
+            color: var(--terciaria);
+            text-decoration: none;
+            margin: 0 20px;
+        }
+
+        footer a:hover {
+            color: var(--quarta);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            font-size: 28px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--terciaria);
+        }
+    </style>
 </head>
 <body>
-  <div class="header">
-    <h1 class="page-title">Consultor Jurídico</h1>
-  </div>
-  <div class="content">
-    <div class="image-grid">
-      <!-- Adicionando os novos links -->
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-09/ocorrencia-de-violencia-obstetrica-no-sus-gera-dever-de-indenizar/"
-target="-blank">
-        <img class="article-image" src="https://i.imgur.com/oaYppyC.jpeg" alt="Não julgue o livro pela capa nem o precedente pela ementa">
-      </a>
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-07/nao-julgue-o-livro-pela-capa-nem-o-precedente-pela-ementa-modelo-irac/" target="_blank">
-        <img class="article-image" src="https://i.imgur.com/fJdEjfu.jpeg" alt="Não julgue o livro pela capa nem o precedente pela ementa">
-      </a>
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-08/braga-netto-alega-cerceamento-de-defesa-por-excesso-de-provas-e-falta-de-acesso/" target="_blank">
-        <img class="article-image" src="https://i.imgur.com/mcEru5d.jpeg" alt="Braga Netto alega cerceamento de defesa por excesso de provas">
-      </a>
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-08/empresa-pode-pagar-valores-devidos-a-tecnica-de-enfermagem-por-precatorios/" target="_blank">
-        <img class="article-image" src="https://i.imgur.com/01QsqYq.jpeg" alt="Empresa pode pagar valores devidos a técnica de enfermagem por precatórios">
-      </a>
-      
-      <!-- Links antigos -->
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-07/furto-de-r-335-em-energia-eletrica-por-ambulante-e-insignificante-conclui-stj/?utm_medium=Social&utm_source=ig_linkinbio" target="_blank">
-        <img class="article-image" src="https://i.imgur.com/a7DyoeZ.jpg" alt="Furto de R$ 335 em energia elétrica é insignificante, conclui STJ">
-      </a>
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-05/stf-surpreende-e-decide-guardas-municipais-podem-prender-em-flagrante/?utm_medium=Social&utm_source=ig_linkinbio" target="_blank">
-        <img class="article-image" src="https://i.imgur.com/L5xl4p2.jpg" alt="STF decide que guardas municipais podem prender em flagrante">
-      </a>
-      <a class="article-link" href="https://www.conjur.com.br/2025-mar-05/habilitacao-do-reu-antes-da-audiencia-de-conciliacao-nao-abre-prazo-para-contestacao/?utm_medium=Social&utm_source=ig_linkinbio" target="_blank">
-        <img class="article-image" src="https://i.imgur.com/g72UU21.jpg" alt="Habilitação do réu antes da audiência não abre prazo para contestação">
-      </a>
+    <!-- Cabeçalho (apenas banner) -->
+    <header id="header"></header>
+
+    <!-- Navegação -->
+    <nav id="nav">
+        <a href="#" onclick="showTab('historia')">História</a>
+        <a href="#" onclick="showTab('missao')">Missão</a>
+        <a href="#" onclick="showTab('servicos')">Serviços</a>
+        <a href="#" onclick="showTab('contato')">Contato</a>
+    </nav>
+
+    <!-- Conteúdo com Abas -->
+    <div class="content">
+        <!-- História -->
+        <div id="historia" class="tab-content active">
+            <h1>Nossa História</h1>
+            <p>A All Management Sports surgiu em um momento de pura inspiração, quando um grupo de entusiastas do futebol decidiu que era hora de deixar um marco no esporte. Nossa trajetória começou nas arquibancadas, assistindo a jogos com olhos atentos e corações acelerados, mas logo percebemos que o verdadeiro impacto acontece nos bastidores. Criamos uma estrutura que vai além das quatro linhas, focada em construir pontes entre jogadores, técnicos e clubes, com uma visão que abraça o esporte como um motor de transformação social. Não se trata apenas de contratos ou vitórias em campo; é sobre plantar sementes pra um futuro onde o futebol seja sinônimo de oportunidade. Nosso time respira inovação, buscando formas de modernizar a gestão esportiva com tecnologia, dados e, acima de tudo, paixão. Hoje, olhamos pra trás com orgulho e pro futuro com determinação, sabendo que cada passo nos aproxima de um legado que transcende gerações.</p>
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout" onclick="showImage(this.src)">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </div>
+
+        <!-- Missão -->
+        <div id="missao" class="tab-content">
+            <h1>Nossa Missão</h1>
+            <p>Nossa missão é um reflexo do que nos move: o futebol como ferramenta de mudança. Na All Management Sports, trabalhamos incansavelmente pra descobrir jovens promessas nas periferias, nos campos de terra e nas escolinhas locais, dando a eles o suporte necessário pra brilhar. Mas nosso olhar vai além dos gramados: queremos profissionalizar o esporte, trazendo soluções que organizam a vida de clubes, desde a base até o elenco principal. Oferecemos uma abordagem única, que combina análise minuciosa de desempenho com estratégias personalizadas pra cada atleta, treinador ou instituição. Nosso time é formado por especialistas que entendem o jogo em todos os seus detalhes — da tática ao psicológico, do financeiro ao social. Acreditamos que a ética é inegociável, e por isso cada parceria que firmamos é pautada pela transparência. Além disso, investimos em projetos que levam o esporte a comunidades carentes, porque sabemos que uma bola pode abrir portas que ninguém imaginava. É assim que construímos nossa história, passo a passo, com a certeza de que o futebol é mais que um jogo — é uma revolução em movimento.</p>
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho" onclick="showImage(this.src)">
+                    <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout" onclick="showImage(this.src)">
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </div>
+
+        <!-- Serviços -->
+        <div id="servicos" class="tab-content">
+            <h1>Serviços</h1>
+            <p>Na All Management Sports, nosso trabalho é uma mistura de precisão e criatividade. Nosso serviço de scouting vasculha o país atrás de novos craques, analisando não só o talento bruto, mas o potencial de crescimento de cada jogador. Já a análise de desempenho entra em campo com tecnologia de ponta, mapeando cada passe, chute e movimentação pra entregar relatórios que mudam o jogo. Não paramos por aí: oferecemos gestão completa de carreiras, cuidando de contratos, negociações e até da saúde mental dos atletas, porque sabemos que o sucesso vem de dentro pra fora. Pra clubes, nossa consultoria traz estratégias que vão desde a preparação física até a administração financeira, tudo pra transformar equipes em máquinas bem afinadas. Trabalhamos lado a lado com nossos parceiros, como São Paulo FC e Palmeiras, pra provar que o esporte pode ser mais inteligente, mais humano e mais eficiente. Nosso objetivo? Fazer do futebol um espaço onde todos ganham — jogadores, torcedores e comunidades.</p>
+            <div class="clientes">
+                <img src="https://i.imgur.com/dCVrWyk.png" alt="São Paulo FC" onclick="showImage(this.src)">
+                <img src="https://i.imgur.com/la0KN38.png" alt="Palmeiras" onclick="showImage(this.src)">
+            </div>
+        </div>
+
+        <!-- Contato -->
+        <div id="contato" class="tab-content">
+            <h1>Contato</h1>
+            <p>📩 allmanagementsports@gmail.com<br>⚽📊 Scout & Análise de Desempenho<br>🔍 Dados que fazem a diferença</p>
+        </div>
     </div>
-  </div>
+
+    <!-- Visualizador de Imagem -->
+    <div id="image-viewer" class="image-viewer">
+        <img id="viewer-img" src="" alt="Imagem Ampliada">
+        <button onclick="closeImage()">Fechar</button>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Siga-nos:</p>
+        <div class="social-icons">
+            <a href="https://x.com/ALLMGSP" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.facebook.com/people/All-Management-Sports/61573717146376/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/allmgsp/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.threads.net/@allmgsp" target="_blank"><i class="fab fa-threads"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-images');
+        images.forEach(carousel => {
+            const totalImages = carousel.children.length;
+            carousel.style.width = `${totalImages * 390}px`; /* Ajustado pro novo tamanho */
+        });
+
+        function moveCarousel(direction) {
+            currentIndex += direction;
+            images.forEach(carousel => {
+                const totalImages = carousel.children.length;
+                if (currentIndex < 0) currentIndex = totalImages - 1;
+                if (currentIndex >= totalImages) currentIndex = 0;
+                const offset = -currentIndex * 390; /* 350px imagem + 40px margem */
+                carousel.style.transform = `translateX(${offset}px)`;
+            });
+        }
+
+        function showImage(src) {
+            const viewer = document.getElementById('image-viewer');
+            const viewerImg = document.getElementById('viewer-img');
+            viewerImg.src = src;
+            viewer.style.display = 'block';
+        }
+
+        function closeImage() {
+            document.getElementById('image-viewer').style.display = 'none';
+        }
+
+        // Esconde o banner ao rolar pra baixo
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.getElementById('header');
+            const nav = document.getElementById('nav');
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hidden');
+                nav.classList.add('hidden');
+            } else if (currentScroll < lastScroll) {
+                header.classList.remove('hidden');
+                nav.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
 </body>
 </html>
