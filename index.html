@@ -366,7 +366,7 @@
         }
 
         .image-viewer img {
-            max-width: 400px; /* Menor e responsivo */
+            max-width: 400px;
             max-height: 80vh;
             object-fit: contain;
         }
@@ -375,7 +375,7 @@
             color: var(--quarta);
             font-size: 14px;
             max-width: 300px;
-            display: none; /* Só aparece para parceiros */
+            display: none;
         }
 
         .image-viewer button {
@@ -415,6 +415,170 @@
 
         .footer__social a:hover {
             color: var(--quarta);
+        }
+
+        /* Media Queries para Celular */
+        @media (max-width: 768px) {
+            /* Header */
+            .header {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .header__logo {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .header__nav ul {
+                gap: 15px;
+            }
+
+            .header__nav a {
+                font-size: 14px;
+            }
+
+            /* Hero */
+            .hero__title {
+                font-size: 28px;
+            }
+
+            .hero__subtitle {
+                font-size: 16px;
+            }
+
+            /* Tab Layout */
+            .tab-layout {
+                flex-direction: column;
+                padding: 30px 15px;
+                min-height: auto;
+            }
+
+            .tab-layout__text {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .tab-layout__title {
+                font-size: 24px;
+            }
+
+            .tab-layout__description {
+                font-size: 14px;
+            }
+
+            .tab-layout__image img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-tab__form {
+                max-width: 100%;
+                gap: 15px;
+            }
+
+            .contact-tab__form input, .contact-tab__form textarea {
+                padding: 10px;
+            }
+
+            .contact-tab__form button {
+                padding: 10px;
+            }
+
+            /* Carousel */
+            .carousel {
+                height: 300px;
+                max-width: 100%;
+            }
+
+            .carousel-images img {
+                width: 200px;
+                height: 280px;
+                margin: 0 10px;
+            }
+
+            .carousel-images {
+                width: calc(200px * 5 + 20px * 4); /* Ajuste dinâmico */
+            }
+
+            .carousel-btn {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            /* Services */
+            .services {
+                padding: 30px 15px;
+            }
+
+            .services__title {
+                font-size: 24px;
+            }
+
+            .service__item {
+                max-width: 100%;
+            }
+
+            .service__title {
+                font-size: 18px;
+            }
+
+            /* Clients */
+            .clients {
+                padding: 30px 15px;
+            }
+
+            .clients__title {
+                font-size: 24px;
+            }
+
+            .clients__grid img {
+                width: 150px;
+                height: 150px;
+            }
+
+            /* Contact (Home) */
+            .contact {
+                padding: 30px 15px;
+            }
+
+            .contact__title {
+                font-size: 24px;
+            }
+
+            .contact__form {
+                max-width: 100%;
+            }
+
+            /* Image Viewer */
+            .image-viewer {
+                padding: 15px;
+                max-width: 95vw;
+            }
+
+            .image-viewer__content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .image-viewer img {
+                max-width: 100%;
+                max-height: 60vh;
+            }
+
+            .image-viewer__text {
+                font-size: 12px;
+                max-width: 100%;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 20px 15px;
+            }
+
+            .footer__social a {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
