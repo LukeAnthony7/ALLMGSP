@@ -114,7 +114,7 @@
             font-size: 18px;
         }
 
-        /* Tab Layout (História, Sobre, Contato) */
+        /* Tab Layout (História, Missão, Contato) */
         .tab-layout {
             padding: 60px 20px;
             display: flex;
@@ -123,6 +123,7 @@
             max-width: 1200px;
             margin: 0 auto;
             background-color: #fff;
+            min-height: 100vh; /* Garante que cada aba tenha altura suficiente */
         }
 
         .tab-layout__text {
@@ -310,6 +311,41 @@
             background-color: #b37b27;
         }
 
+        /* Image Viewer */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: var(--secundaria);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .image-viewer img {
+            width: 600px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .image-viewer button {
+            background: var(--terciaria);
+            color: var(--quarta);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+        }
+
         /* Footer */
         .footer {
             background-color: var(--secundaria);
@@ -359,13 +395,64 @@
                 <p class="hero__subtitle">Transformando o futebol com paixão, tecnologia e estratégia.</p>
             </div>
         </section>
+
+        <section class="carousel">
+            <div class="carousel-images">
+                <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação" onclick="showImage(this.src)">
+                <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História" onclick="showImage(this.src)">
+                <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo" onclick="showImage(this.src)">
+                <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho" onclick="showImage(this.src)">
+                <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout" onclick="showImage(this.src)">
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+        </section>
+
+        <section class="services">
+            <h2 class="services__title">Nossos Serviços</h2>
+            <div class="services__grid">
+                <div class="service__item">
+                    <img class="service__icon" src="https://via.placeholder.com/80" alt="Scout">
+                    <h3 class="service__title">Scouting</h3>
+                    <p>Prospecção de novos talentos com análise de potencial e crescimento.</p>
+                </div>
+                <div class="service__item">
+                    <img class="service__icon" src="https://via.placeholder.com/80" alt="Análise">
+                    <h3 class="service__title">Análise de Desempenho</h3>
+                    <p>Relatórios detalhados para otimizar o desempenho em campo.</p>
+                </div>
+                <div class="service__item">
+                    <img class="service__icon" src="https://via.placeholder.com/80" alt="Gestão">
+                    <h3 class="service__title">Gestão de Carreiras</h3>
+                    <p>Suporte completo para atletas, do contrato à saúde mental.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="clients">
+            <h2 class="clients__title">Nossos Parceiros</h2>
+            <div class="clients__grid">
+                <img src="https://i.imgur.com/dCVrWyk.png" alt="São Paulo FC" onclick="showImage(this.src)">
+                <img src="https://i.imgur.com/la0KN38.png" alt="Palmeiras" onclick="showImage(this.src)">
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 class="contact__title">Fale Conosco</h2>
+            <form class="contact__form">
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="E-mail" required>
+                <textarea placeholder="Mensagem" rows="5" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
     </div>
 
     <div id="historia" class="tab-content">
         <div class="tab-layout">
             <div class="tab-layout__text">
                 <h2 class="tab-layout__title">Nossa História</h2>
-                <p class="tab-layout__description">Tudo começou com um grupo de apaixonados por futebol que queria mais do que apenas assistir aos jogos. Decidimos atuar nos bastidores, conectando talentos a oportunidades e usando dados para revolucionar o esporte. Hoje, somos uma ponte entre o sonho e a realidade.</p>
+                <p class="tab-layout__description">A All Management Sports nasceu da união de mentes apaixonadas pelo futebol e determinadas a fazer a diferença. Começamos como observadores atentos nas arquibancadas, mas logo percebemos que o impacto real está nos bastidores. Hoje, usamos tecnologia e visão estratégica para conectar talentos a grandes oportunidades e transformar o esporte que amamos.</p>
             </div>
             <div class="tab-layout__image">
                 <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História">
@@ -377,7 +464,7 @@
         <div class="tab-layout">
             <div class="tab-layout__text">
                 <h2 class="tab-layout__title">Nossa Missão</h2>
-                <p class="tab-layout__description">Queremos transformar o futebol em uma ferramenta de impacto social. Buscamos jovens talentos em comunidades, oferecendo suporte para que alcancem o topo, enquanto ajudamos clubes a se tornarem mais eficientes e competitivos com estratégias inteligentes.</p>
+                <p class="tab-layout__description">Nosso propósito é claro: tornar o futebol uma força de mudança social e profissionalização. Descobrimos jovens promessas em comunidades esquecidas e oferecemos a clubes ferramentas para alcançar o sucesso com eficiência. Com ética e inovação, queremos construir um futuro onde o esporte seja acessível e transformador.</p>
             </div>
             <div class="tab-layout__image">
                 <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo">
@@ -388,8 +475,8 @@
     <div id="contato" class="tab-content">
         <div class="tab-layout">
             <div class="tab-layout__text">
-                <h2 class="tab-layout__title">Entre em Contato</h2>
-                <p class="tab-layout__description">Tem interesse em nossos serviços ou quer fazer parte da nossa missão? Nosso time está pronto para ouvir você e construir parcerias que fazem a diferença no futebol brasileiro.</p>
+                <h2 class="tab-layout__title">Contato</h2>
+                <p class="tab-layout__description">Entre em contato pelo e-mail allmanagementsports@gmail.com ou pelas nossas redes sociais. Estamos prontos para ouvir suas ideias e discutir como podemos trabalhar juntos para elevar o nível do futebol brasileiro.</p>
             </div>
             <div class="tab-layout__image">
                 <img src="https://i.imgur.com/wS8UtkU.png" alt="Contato">
@@ -397,58 +484,13 @@
         </div>
     </div>
 
-    <!-- Fixed Sections -->
-    <section class="carousel">
-        <div class="carousel-images">
-            <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação">
-            <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História">
-            <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo">
-            <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho">
-            <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout">
-        </div>
-        <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
-        <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
-    </section>
+    <!-- Image Viewer -->
+    <div id="image-viewer" class="image-viewer">
+        <img id="viewer-img" src="" alt="Imagem Ampliada">
+        <button onclick="closeImage()">Fechar</button>
+    </div>
 
-    <section class="services">
-        <h2 class="services__title">Nossos Serviços</h2>
-        <div class="services__grid">
-            <div class="service__item">
-                <img class="service__icon" src="https://via.placeholder.com/80" alt="Scout">
-                <h3 class="service__title">Scouting</h3>
-                <p>Prospecção de novos talentos com análise de potencial e crescimento.</p>
-            </div>
-            <div class="service__item">
-                <img class="service__icon" src="https://via.placeholder.com/80" alt="Análise">
-                <h3 class="service__title">Análise de Desempenho</h3>
-                <p>Relatórios detalhados para otimizar o desempenho em campo.</p>
-            </div>
-            <div class="service__item">
-                <img class="service__icon" src="https://via.placeholder.com/80" alt="Gestão">
-                <h3 class="service__title">Gestão de Carreiras</h3>
-                <p>Suporte completo para atletas, do contrato à saúde mental.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="clients">
-        <h2 class="clients__title">Nossos Parceiros</h2>
-        <div class="clients__grid">
-            <img src="https://i.imgur.com/dCVrWyk.png" alt="São Paulo FC">
-            <img src="https://i.imgur.com/la0KN38.png" alt="Palmeiras">
-        </div>
-    </section>
-
-    <section class="contact">
-        <h2 class="contact__title">Fale Conosco</h2>
-        <form class="contact__form">
-            <input type="text" placeholder="Nome" required>
-            <input type="email" placeholder="E-mail" required>
-            <textarea placeholder="Mensagem" rows="5" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-
+    <!-- Footer -->
     <footer class="footer">
         <p>© 2025 All Management Sports. Todos os direitos reservados.</p>
         <ul class="footer__social">
@@ -478,6 +520,21 @@
             if (currentIndex >= totalImages) currentIndex = 0;
             const offset = -currentIndex * 340;
             carousel.style.transform = `translateX(${offset}px)`;
+        }
+
+        function showImage(src) {
+            const activeTab = document.querySelector('.tab-content.active').id;
+            if (activeTab === 'home') { // Só funciona na aba Home
+                const viewer = document.getElementById('image-viewer');
+                const viewerImg = document.getElementById('viewer-img');
+                viewerImg.src = src;
+                viewer.style.display = 'block';
+            }
+        }
+
+        function closeImage() {
+            const viewer = document.getElementById('image-viewer');
+            viewer.style.display = 'none';
         }
     </script>
 </body>
