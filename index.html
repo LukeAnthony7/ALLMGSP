@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Management Sports</title>
-    <!-- Font Awesome para ícones -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Helvetica", Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         :root {
@@ -22,88 +22,137 @@
         }
 
         body {
-            background: linear-gradient(to bottom, var(--primaria), #0a1e3a);
-            color: var(--quarta);
-            line-height: 2;
+            background-color: var(--quarta);
+            color: var(--secundaria);
+            line-height: 1.6;
         }
 
-        header {
-            background: url('https://i.imgur.com/mRJwjVk.jpeg') no-repeat center;
-            background-size: cover;
-            background-position: center center;
-            height: 300px;
+        /* Header */
+        .header {
+            background-color: var(--secundaria);
+            padding: 20px;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 2px solid var(--terciaria);
-            transition: top 0.3s;
         }
 
-        header.hidden {
-            top: -300px;
-        }
-
-        nav {
-            background-color: var(--secundaria);
-            padding: 20px;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 300px;
-            z-index: 999;
-            transition: top 0.3s;
-        }
-
-        nav.hidden {
-            top: 0;
-        }
-
-        nav a {
-            color: var(--terciaria);
-            text-decoration: none;
-            margin: 0 25px;
-            font-size: 18px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
+        .header__logo {
+            font-size: 24px;
+            font-weight: 700;
             color: var(--quarta);
         }
 
-        .content {
-            margin-top: 400px;
-            padding: 80px 60px;
+        .header__nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
         }
 
+        .header__nav a {
+            color: var(--terciaria);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .header__nav a:hover {
+            color: var(--quarta);
+        }
+
+        /* Tab Content */
         .tab-content {
             display: none;
+            margin-top: 80px; /* Ajuste para o header fixo */
         }
 
         .tab-content.active {
             display: block;
         }
 
-        h1 {
-            font-size: 40px;
-            color: var(--terciaria);
+        /* Hero Section (Home Tab) */
+        .hero {
+            height: 100vh;
+            background: url('https://i.imgur.com/mRJwjVk.jpeg') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            margin-bottom: 40px;
+            color: var(--quarta);
+            position: relative;
         }
 
-        p {
-            max-width: 900px;
-            margin: 0 auto 50px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero__title {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--terciaria);
+        }
+
+        .hero__subtitle {
+            font-size: 18px;
+        }
+
+        /* Tab Layout (História, Sobre, Contato) */
+        .tab-layout {
+            padding: 60px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        .tab-layout__text {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .tab-layout__title {
+            font-size: 28px;
+            color: var(--terciaria);
+            margin-bottom: 20px;
+        }
+
+        .tab-layout__description {
             font-size: 16px;
         }
 
-        /* Carrossel */
+        .tab-layout__image img {
+            width: 500px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Carousel */
         .carousel {
             width: 100%;
-            max-width: 1400px;
-            height: 600px;
-            margin: 0 auto 50px;
+            max-width: 1200px;
+            height: 500px;
+            margin: 0 auto 60px;
             overflow: hidden;
             position: relative;
             border: 1px solid var(--terciaria);
@@ -116,8 +165,8 @@
         }
 
         .carousel-images img {
-            width: 400px;
-            height: 550px;
+            width: 300px;
+            height: 450px;
             object-fit: contain;
             opacity: 0.8;
             margin: 0 20px;
@@ -136,9 +185,9 @@
             background: var(--terciaria);
             color: var(--quarta);
             border: none;
-            padding: 20px;
+            padding: 15px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .prev {
@@ -149,15 +198,62 @@
             right: 0;
         }
 
-        /* Clientes */
-        .clientes {
+        /* Services Section */
+        .services {
+            padding: 60px 20px;
+            background-color: var(--primaria);
+            color: var(--quarta);
+            text-align: center;
+        }
+
+        .services__title {
+            font-size: 28px;
+            color: var(--terciaria);
+            margin-bottom: 40px;
+        }
+
+        .services__grid {
             display: flex;
             justify-content: center;
             gap: 40px;
-            margin-top: 50px;
+            flex-wrap: wrap;
         }
 
-        .clientes img {
+        .service__item {
+            max-width: 300px;
+        }
+
+        .service__icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .service__title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Clients Section */
+        .clients {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .clients__title {
+            font-size: 28px;
+            color: var(--terciaria);
+            margin-bottom: 40px;
+        }
+
+        .clients__grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .clients__grid img {
             width: 200px;
             height: 200px;
             object-fit: contain;
@@ -166,162 +262,201 @@
             transition: opacity 0.3s;
         }
 
-        .clientes img:hover {
+        .clients__grid img:hover {
             opacity: 1;
         }
 
-        /* Imagem Ampliada */
-        .image-viewer {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2000;
-            background: var(--secundaria);
-            padding: 20px;
+        /* Contact Section */
+        .contact {
+            padding: 60px 20px;
+            background-color: var(--secundaria);
+            color: var(--quarta);
+            text-align: center;
+        }
+
+        .contact__title {
+            font-size: 28px;
+            color: var(--terciaria);
+            margin-bottom: 20px;
+        }
+
+        .contact__form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact__form input, .contact__form textarea {
+            padding: 10px;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            max-height: 80vh; /* Limita a altura pra não cobrir tudo */
-            overflow-y: auto; /* Rolagem se precisar */
+            background-color: var(--quarta);
+            color: var(--secundaria);
         }
 
-        .image-viewer img {
-            width: 500px; /* Menor, mas legível */
-            height: auto;
-            object-fit: contain;
-        }
-
-        .image-viewer button {
-            background: var(--terciaria);
+        .contact__form button {
+            padding: 10px;
+            background-color: var(--terciaria);
             color: var(--quarta);
             border: none;
-            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 16px;
-            z-index: 2001; /* Garante que o botão fique acima */
+            font-weight: 600;
         }
 
-        /* Rodapé */
-        footer {
+        .contact__form button:hover {
+            background-color: #b37b27;
+        }
+
+        /* Footer */
+        .footer {
             background-color: var(--secundaria);
-            padding: 40px;
+            padding: 40px 20px;
             text-align: center;
-            font-size: 14px;
-            margin-top: 80px;
-        }
-
-        footer a {
-            color: var(--terciaria);
-            text-decoration: none;
-            margin: 0 20px;
-        }
-
-        footer a:hover {
             color: var(--quarta);
         }
 
-        .social-icons {
-            margin-top: 20px;
+        .footer__social {
+            list-style: none;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .social-icons a {
-            font-size: 28px;
+        .footer__social a {
+            color: var(--terciaria);
+            font-size: 24px;
             transition: color 0.3s;
         }
 
-        .social-icons a:hover {
-            color: var(--terciaria);
+        .footer__social a:hover {
+            color: var(--quarta);
         }
     </style>
 </head>
 <body>
-    <!-- Cabeçalho (apenas banner) -->
-    <header id="header"></header>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__logo">All Management Sports</div>
+        <nav class="header__nav">
+            <ul>
+                <li><a onclick="showTab('home')">Home</a></li>
+                <li><a onclick="showTab('historia')">História</a></li>
+                <li><a onclick="showTab('missao')">Missão</a></li>
+                <li><a onclick="showTab('contato')">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Navegação -->
-    <nav id="nav">
-        <a href="#" onclick="showTab('historia')">História</a>
-        <a href="#" onclick="showTab('missao')">Missão</a>
-        <a href="#" onclick="showTab('servicos')">Serviços</a>
-        <a href="#" onclick="showTab('contato')">Contato</a>
-    </nav>
-
-    <!-- Conteúdo com Abas -->
-    <div class="content">
-        <!-- História -->
-        <div id="historia" class="tab-content active">
-            <h1>Nossa História</h1>
-            <p>A All Management Sports surgiu em um momento de pura inspiração, quando um grupo de entusiastas do futebol decidiu que era hora de deixar um marco no esporte. Nossa trajetória começou nas arquibancadas, assistindo a jogos com olhos atentos e corações acelerados, mas logo percebemos que o verdadeiro impacto acontece nos bastidores. Criamos uma estrutura que vai além das quatro linhas, focada em construir pontes entre jogadores, técnicos e clubes, com uma visão que abraça o esporte como um motor de transformação social. Não se trata apenas de contratos ou vitórias em campo; é sobre plantar sementes pra um futuro onde o futebol seja sinônimo de oportunidade. Nosso time respira inovação, buscando formas de modernizar a gestão esportiva com tecnologia, dados e, acima de tudo, paixão. Hoje, olhamos pra trás com orgulho e pro futuro com determinação, sabendo que cada passo nos aproxima de um legado que transcende gerações.</p>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout" onclick="showImage(this.src)">
-                </div>
-                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
-                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+    <!-- Tab Contents -->
+    <div id="home" class="tab-content active">
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">All Management Sports</h1>
+                <p class="hero__subtitle">Transformando o futebol com paixão, tecnologia e estratégia.</p>
             </div>
-        </div>
+        </section>
+    </div>
 
-        <!-- Missão -->
-        <div id="missao" class="tab-content">
-            <h1>Nossa Missão</h1>
-            <p>Nossa missão é um reflexo do que nos move: o futebol como ferramenta de mudança. Na All Management Sports, trabalhamos incansavelmente pra descobrir jovens promessas nas periferias, nos campos de terra e nas escolinhas locais, dando a eles o suporte necessário pra brilhar. Mas nosso olhar vai além dos gramados: queremos profissionalizar o esporte, trazendo soluções que organizam a vida de clubes, desde a base até o elenco principal. Oferecemos uma abordagem única, que combina análise minuciosa de desempenho com estratégias personalizadas pra cada atleta, treinador ou instituição. Nosso time é formado por especialistas que entendem o jogo em todos os seus detalhes — da tática ao psicológico, do financeiro ao social. Acreditamos que a ética é inegociável, e por isso cada parceria que firmamos é pautada pela transparência. Além disso, investimos em projetos que levam o esporte a comunidades carentes, porque sabemos que uma bola pode abrir portas que ninguém imaginava. É assim que construímos nossa história, passo a passo, com a certeza de que o futebol é mais que um jogo — é uma revolução em movimento.</p>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho" onclick="showImage(this.src)">
-                    <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout" onclick="showImage(this.src)">
-                </div>
-                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
-                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+    <div id="historia" class="tab-content">
+        <div class="tab-layout">
+            <div class="tab-layout__text">
+                <h2 class="tab-layout__title">Nossa História</h2>
+                <p class="tab-layout__description">Tudo começou com um grupo de apaixonados por futebol que queria mais do que apenas assistir aos jogos. Decidimos atuar nos bastidores, conectando talentos a oportunidades e usando dados para revolucionar o esporte. Hoje, somos uma ponte entre o sonho e a realidade.</p>
             </div>
-        </div>
-
-        <!-- Serviços -->
-        <div id="servicos" class="tab-content">
-            <h1>Serviços</h1>
-            <p>Na All Management Sports, nosso trabalho é uma mistura de precisão e criatividade. Nosso serviço de scouting vasculha o país atrás de novos craques, analisando não só o talento bruto, mas o potencial de crescimento de cada jogador. Já a análise de desempenho entra em campo com tecnologia de ponta, mapeando cada passe, chute e movimentação pra entregar relatórios que mudam o jogo. Não paramos por aí: oferecemos gestão completa de carreiras, cuidando de contratos, negociações e até da saúde mental dos atletas, porque sabemos que o sucesso vem de dentro pra fora. Pra clubes, nossa consultoria traz estratégias que vão desde a preparação física até a administração financeira, tudo pra transformar equipes em máquinas bem afinadas. Trabalhamos lado a lado com nossos parceiros, como São Paulo FC e Palmeiras, pra provar que o esporte pode ser mais inteligente, mais humano e mais eficiente. Nosso objetivo? Fazer do futebol um espaço onde todos ganham — jogadores, torcedores e comunidades.</p>
-            <div class="clientes">
-                <img src="https://i.imgur.com/dCVrWyk.png" alt="São Paulo FC" onclick="showImage(this.src)">
-                <img src="https://i.imgur.com/la0KN38.png" alt="Palmeiras" onclick="showImage(this.src)">
+            <div class="tab-layout__image">
+                <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História">
             </div>
-        </div>
-
-        <!-- Contato -->
-        <div id="contato" class="tab-content">
-            <h1>Contato</h1>
-            <p>📩 allmanagementsports@gmail.com<br>⚽📊 Scout & Análise de Desempenho<br>🔍 Dados que fazem a diferença</p>
         </div>
     </div>
 
-    <!-- Visualizador de Imagem -->
-    <div id="image-viewer" class="image-viewer">
-        <img id="viewer-img" src="" alt="Imagem Ampliada">
-        <button onclick="closeImage()">Fechar</button>
+    <div id="missao" class="tab-content">
+        <div class="tab-layout">
+            <div class="tab-layout__text">
+                <h2 class="tab-layout__title">Nossa Missão</h2>
+                <p class="tab-layout__description">Queremos transformar o futebol em uma ferramenta de impacto social. Buscamos jovens talentos em comunidades, oferecendo suporte para que alcancem o topo, enquanto ajudamos clubes a se tornarem mais eficientes e competitivos com estratégias inteligentes.</p>
+            </div>
+            <div class="tab-layout__image">
+                <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo">
+            </div>
+        </div>
     </div>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>Siga-nos:</p>
-        <div class="social-icons">
-            <a href="https://x.com/ALLMGSP" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.facebook.com/people/All-Management-Sports/61573717146376/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/allmgsp/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.threads.net/@allmgsp" target="_blank"><i class="fab fa-threads"></i></a>
+    <div id="contato" class="tab-content">
+        <div class="tab-layout">
+            <div class="tab-layout__text">
+                <h2 class="tab-layout__title">Entre em Contato</h2>
+                <p class="tab-layout__description">Tem interesse em nossos serviços ou quer fazer parte da nossa missão? Nosso time está pronto para ouvir você e construir parcerias que fazem a diferença no futebol brasileiro.</p>
+            </div>
+            <div class="tab-layout__image">
+                <img src="https://i.imgur.com/wS8UtkU.png" alt="Contato">
+            </div>
         </div>
+    </div>
+
+    <!-- Fixed Sections -->
+    <section class="carousel">
+        <div class="carousel-images">
+            <img src="https://i.imgur.com/PVVYFTm.png" alt="Apresentação">
+            <img src="https://i.imgur.com/PQ2lNsU.png" alt="Nossa História">
+            <img src="https://i.imgur.com/OSvLU06.png" alt="Nosso Objetivo">
+            <img src="https://i.imgur.com/wS8UtkU.png" alt="Análise e Desempenho">
+            <img src="https://i.imgur.com/eUbKpWX.png" alt="Scout">
+        </div>
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+        <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+    </section>
+
+    <section class="services">
+        <h2 class="services__title">Nossos Serviços</h2>
+        <div class="services__grid">
+            <div class="service__item">
+                <img class="service__icon" src="https://via.placeholder.com/80" alt="Scout">
+                <h3 class="service__title">Scouting</h3>
+                <p>Prospecção de novos talentos com análise de potencial e crescimento.</p>
+            </div>
+            <div class="service__item">
+                <img class="service__icon" src="https://via.placeholder.com/80" alt="Análise">
+                <h3 class="service__title">Análise de Desempenho</h3>
+                <p>Relatórios detalhados para otimizar o desempenho em campo.</p>
+            </div>
+            <div class="service__item">
+                <img class="service__icon" src="https://via.placeholder.com/80" alt="Gestão">
+                <h3 class="service__title">Gestão de Carreiras</h3>
+                <p>Suporte completo para atletas, do contrato à saúde mental.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="clients">
+        <h2 class="clients__title">Nossos Parceiros</h2>
+        <div class="clients__grid">
+            <img src="https://i.imgur.com/dCVrWyk.png" alt="São Paulo FC">
+            <img src="https://i.imgur.com/la0KN38.png" alt="Palmeiras">
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2 class="contact__title">Fale Conosco</h2>
+        <form class="contact__form">
+            <input type="text" placeholder="Nome" required>
+            <input type="email" placeholder="E-mail" required>
+            <textarea placeholder="Mensagem" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 All Management Sports. Todos os direitos reservados.</p>
+        <ul class="footer__social">
+            <li><a href="https://x.com/ALLMGSP" target="_blank"><i class="fab fa-x-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/people/All-Management-Sports/61573717146376/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.instagram.com/allmgsp/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.threads.net/@allmgsp" target="_blank"><i class="fab fa-threads"></i></a></li>
+        </ul>
     </footer>
 
     <!-- JavaScript -->
@@ -329,53 +464,21 @@
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
+            window.scrollTo(0, 0); // Volta ao topo ao mudar de aba
         }
 
         let currentIndex = 0;
-        const images = document.querySelectorAll('.carousel-images');
-        images.forEach(carousel => {
-            const totalImages = carousel.children.length;
-            carousel.style.width = `${totalImages * 440}px`;
-        });
+        const carousel = document.querySelector('.carousel-images');
+        const totalImages = carousel.children.length;
+        carousel.style.width = `${totalImages * 340}px`; /* 300px imagem + 40px margem */
 
         function moveCarousel(direction) {
             currentIndex += direction;
-            images.forEach(carousel => {
-                const totalImages = carousel.children.length;
-                if (currentIndex < 0) currentIndex = totalImages - 1;
-                if (currentIndex >= totalImages) currentIndex = 0;
-                const offset = -currentIndex * 440;
-                carousel.style.transform = `translateX(${offset}px)`;
-            });
+            if (currentIndex < 0) currentIndex = totalImages - 1;
+            if (currentIndex >= totalImages) currentIndex = 0;
+            const offset = -currentIndex * 340;
+            carousel.style.transform = `translateX(${offset}px)`;
         }
-
-        function showImage(src) {
-            const viewer = document.getElementById('image-viewer');
-            const viewerImg = document.getElementById('viewer-img');
-            viewerImg.src = src;
-            viewer.style.display = 'block';
-        }
-
-        function closeImage() {
-            const viewer = document.getElementById('image-viewer');
-            viewer.style.display = 'none';
-        }
-
-        // Esconde o banner ao rolar pra baixo
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            const header = document.getElementById('header');
-            const nav = document.getElementById('nav');
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                header.classList.add('hidden');
-                nav.classList.add('hidden');
-            } else if (currentScroll < lastScroll) {
-                header.classList.remove('hidden');
-                nav.classList.remove('hidden');
-            }
-            lastScroll = currentScroll;
-        });
     </script>
 </body>
 </html>
