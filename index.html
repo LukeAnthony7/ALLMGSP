@@ -116,9 +116,9 @@
         }
 
         .carousel-images img {
-            width: 400px; /* Mais largas */
-            height: 550px; /* Mantida a altura */
-            object-fit: contain; /* Sem corte, visível inteira */
+            width: 400px;
+            height: 550px;
+            object-fit: contain;
             opacity: 0.8;
             margin: 0 20px;
             cursor: pointer;
@@ -182,10 +182,12 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-height: 80vh; /* Limita a altura pra não cobrir tudo */
+            overflow-y: auto; /* Rolagem se precisar */
         }
 
         .image-viewer img {
-            width: 800px;
+            width: 500px; /* Menor, mas legível */
             height: auto;
             object-fit: contain;
         }
@@ -201,6 +203,7 @@
             margin-left: auto;
             margin-right: auto;
             font-size: 16px;
+            z-index: 2001; /* Garante que o botão fique acima */
         }
 
         /* Rodapé */
@@ -332,7 +335,7 @@
         const images = document.querySelectorAll('.carousel-images');
         images.forEach(carousel => {
             const totalImages = carousel.children.length;
-            carousel.style.width = `${totalImages * 440}px`; /* Ajustado pro novo tamanho */
+            carousel.style.width = `${totalImages * 440}px`;
         });
 
         function moveCarousel(direction) {
@@ -341,7 +344,7 @@
                 const totalImages = carousel.children.length;
                 if (currentIndex < 0) currentIndex = totalImages - 1;
                 if (currentIndex >= totalImages) currentIndex = 0;
-                const offset = -currentIndex * 440; /* 400px imagem + 40px margem */
+                const offset = -currentIndex * 440;
                 carousel.style.transform = `translateX(${offset}px)`;
             });
         }
